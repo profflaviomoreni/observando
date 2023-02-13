@@ -16,15 +16,10 @@ public class RunnerObserv {
 		dolarService.calcularDolarVersusReal();
 
 		DolarCotacaoView telaCotacao = new DolarCotacaoView(dolarService);
-		//telaCotacao.exibirCotacaoDolarReal();
+
+		TelaElevadorView telaElevador = new TelaElevadorView(dolarService);
 		
-		/*
-		TelaElevadorView telaElevador = new TelaElevadorView(dolarService.getCotacaoDolarReal());
-		telaElevador.exibirCotacaoDolarReal();
-		
-		TelaTabletView telaTablet = new TelaTabletView(dolarService.getCotacaoDolarReal());
-		telaTablet.exibirCotacaoDolarReal();
-		*/
+		TelaTabletView telaTablet = new TelaTabletView(dolarService);
 		
 		
 		System.out.println("---------------------------------------");
@@ -34,26 +29,7 @@ public class RunnerObserv {
 		    @Override  
 		    public void run() {  
 		    	dolarService.calcularDolarVersusReal();
-
-		    	//double valorDolarCorrente = dolarService.getCotacaoDolarReal();
-				
-				/*
-				telaCotacao.setCotacaoDolarReal(valorDolarCorrente);
-				telaCotacao.exibirCotacaoDolarReal();
-				*/
-				
-				/*
-				telaElevador.setCotacaoDolarReal(valorDolarCorrente);
-				telaElevador.exibirCotacaoDolarReal();
-				
-				telaTablet.setCotacaoDolarReal(valorDolarCorrente);
-				telaTablet.exibirCotacaoDolarReal();
-				*/
-				
-				System.out.println("---------------------------------------");
-				
-		    	//System.out.println("Cotação em " + new Date() + ": " + valorDolarCorrente);  
-		          
+		    	System.out.println("---------------------------------------");
 		    };  
 		};  
 		t.schedule(tt, new Date(),2000); ;  

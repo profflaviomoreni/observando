@@ -1,21 +1,33 @@
 package br.com.fiap.observando.view;
 
-public class TelaTabletView {
+import java.util.Observable;
+import java.util.Observer;
 
+import br.com.fiap.observando.service.DolarService;
+
+public class TelaTabletView implements Observer {
+
+	Observable dolarService;
 	
 	private double cotacaoDolarReal;
 	
 	private String labelCotacaoDolarReal;
 
-	public TelaTabletView() {
-		super();
+	public TelaTabletView(Observable dolarServiceObservable) {
+		this.dolarService = dolarServiceObservable;
+		dolarServiceObservable.addObserver(this);
 	}
 
-	public TelaTabletView(double cotacaoDolarReal) {
-		super();
-		this.cotacaoDolarReal = cotacaoDolarReal;
+	
+	@Override
+	public void update(Observable dolarServiceSubject, Object argumento) {
+		if ( dolarServiceSubject instanceof DolarService ) {
+			DolarService dolarService = (DolarService) dolarServiceSubject;
+			setCotacaoDolarReal(dolarService.getCotacaoDolarReal());
+			exibirCotacaoDolarReal();
+		}
 	}
-
+	
 	public double getCotacaoDolarReal() {
 		return cotacaoDolarReal;
 	}
