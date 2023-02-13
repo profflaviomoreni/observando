@@ -17,7 +17,6 @@ public class DolarService {
 	public void calcularDolarVersusReal() {
 		Random rand = new Random(); 
 		this.cotacaoDolarReal = 5 + rand.nextDouble();
-		
 	}
 	
 }

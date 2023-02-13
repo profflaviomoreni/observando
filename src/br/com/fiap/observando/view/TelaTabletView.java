@@ -1,25 +1,21 @@
 package br.com.fiap.observando.view;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+public class TelaTabletView {
 
-public class TelaTabletView implements PropertyChangeListener {
-
-
+	
 	private double cotacaoDolarReal;
 	
 	private String labelCotacaoDolarReal;
 
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		if ( evt.getPropertyName().equals("VALOR_DOLAR_REAL") ) {
-			final Double valorDouble = (Double) evt.getNewValue();
-			setCotacaoDolarReal(valorDouble.doubleValue());
-			exibirCotacaoDolarReal();
-		}
+	public TelaTabletView() {
+		super();
 	}
-	
-	
+
+	public TelaTabletView(double cotacaoDolarReal) {
+		super();
+		this.cotacaoDolarReal = cotacaoDolarReal;
+	}
+
 	public double getCotacaoDolarReal() {
 		return cotacaoDolarReal;
 	}

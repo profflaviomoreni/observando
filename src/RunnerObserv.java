@@ -5,6 +5,7 @@ import java.util.TimerTask;
 import br.com.fiap.observando.service.DolarService;
 import br.com.fiap.observando.view.DolarCotacaoView;
 import br.com.fiap.observando.view.TelaElevadorView;
+import br.com.fiap.observando.view.TelaTabletView;
 
 public class RunnerObserv {
 
@@ -19,6 +20,9 @@ public class RunnerObserv {
 		
 		TelaElevadorView telaElevador = new TelaElevadorView(dolarService.getCotacaoDolarReal());
 		telaElevador.exibirCotacaoDolarReal();
+		
+		TelaTabletView telaTablet = new TelaTabletView(dolarService.getCotacaoDolarReal());
+		telaTablet.exibirCotacaoDolarReal();
 		
 		System.out.println("---------------------------------------");
 		
@@ -36,13 +40,16 @@ public class RunnerObserv {
 				telaElevador.setCotacaoDolarReal(valorDolarCorrente);
 				telaElevador.exibirCotacaoDolarReal();
 				
+				telaTablet.setCotacaoDolarReal(valorDolarCorrente);
+				telaTablet.exibirCotacaoDolarReal();
+				
 				System.out.println("---------------------------------------");
 				
 		    	//System.out.println("Cotação em " + new Date() + ": " + valorDolarCorrente);  
 		          
 		    };  
 		};  
-		t.schedule(tt, new Date(),5000); ;  
+		t.schedule(tt, new Date(),3000); ;  
 		
 		
 		
