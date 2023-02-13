@@ -15,12 +15,13 @@ public class RunnerObserv {
 		DolarService dolarService = new DolarService();
 		dolarService.calcularDolarVersusReal();
 
-		DolarCotacaoView telaCotacao = new DolarCotacaoView(dolarService);
-
-		TelaElevadorView telaElevador = new TelaElevadorView(dolarService);
+		DolarCotacaoView telaCotacao = new DolarCotacaoView();
+		TelaElevadorView telaElevador = new TelaElevadorView();
+		TelaTabletView telaTabletView = new TelaTabletView();
 		
-		TelaTabletView telaTablet = new TelaTabletView(dolarService);
-		
+		dolarService.addObserver(telaCotacao);
+		dolarService.addObserver(telaElevador);
+		dolarService.addObserver(telaTabletView);
 		
 		System.out.println("---------------------------------------");
 		
@@ -28,13 +29,13 @@ public class RunnerObserv {
 		TimerTask tt = new TimerTask() {  
 		    @Override  
 		    public void run() {  
+		    	
 		    	dolarService.calcularDolarVersusReal();
-		    	System.out.println("---------------------------------------");
+				System.out.println("---------------------------------------");
+				
 		    };  
 		};  
 		t.schedule(tt, new Date(),2000); ;  
-		
-		
 		
 	}
 

@@ -1,10 +1,13 @@
 package br.com.fiap.observando.service;
 
-import java.util.Observable;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Random;
 
-public class DolarService extends Observable {
+public class DolarService {
 
+	
+	PropertyChangeSupport pcs = new  PropertyChangeSupport(this);
 	
 	private double cotacaoDolarReal;
 
@@ -18,10 +21,16 @@ public class DolarService extends Observable {
 		Random rand = new Random(); 
 		this.cotacaoDolarReal = 5 + rand.nextDouble();
 		
-		setChanged();
-		notifyObservers();
+		pcs.firePropertyChange(
+					"VALOR_DOLAR_REAL", 
+					null, 
+					Double.valueOf(cotacaoDolarReal));
 	}
 	
+	
+    public void addObserver(PropertyChangeListener pcl) {
+        pcs.addPropertyChangeListener("VALOR_DOLAR_REAL", pcl);
+	}
 	
 	
 	

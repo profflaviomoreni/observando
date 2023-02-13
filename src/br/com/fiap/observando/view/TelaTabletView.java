@@ -1,32 +1,24 @@
 package br.com.fiap.observando.view;
 
-import java.util.Observable;
-import java.util.Observer;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-import br.com.fiap.observando.service.DolarService;
+public class TelaTabletView implements PropertyChangeListener {
 
-public class TelaTabletView implements Observer {
 
-	Observable dolarService;
-	
 	private double cotacaoDolarReal;
 	
 	private String labelCotacaoDolarReal;
 
-	public TelaTabletView(Observable dolarServiceObservable) {
-		this.dolarService = dolarServiceObservable;
-		dolarServiceObservable.addObserver(this);
-	}
-
-	
 	@Override
-	public void update(Observable dolarServiceSubject, Object argumento) {
-		if ( dolarServiceSubject instanceof DolarService ) {
-			DolarService dolarService = (DolarService) dolarServiceSubject;
-			setCotacaoDolarReal(dolarService.getCotacaoDolarReal());
+	public void propertyChange(PropertyChangeEvent evt) {
+		if ( evt.getPropertyName().equals("VALOR_DOLAR_REAL") ) {
+			final Double valorDouble = (Double) evt.getNewValue();
+			setCotacaoDolarReal(valorDouble.doubleValue());
 			exibirCotacaoDolarReal();
 		}
 	}
+	
 	
 	public double getCotacaoDolarReal() {
 		return cotacaoDolarReal;
