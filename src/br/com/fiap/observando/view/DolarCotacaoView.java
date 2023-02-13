@@ -1,20 +1,36 @@
 package br.com.fiap.observando.view;
 
-public class DolarCotacaoView {
+import java.util.Observable;
+import java.util.Observer;
 
+import br.com.fiap.observando.service.DolarService;
+
+public class DolarCotacaoView implements Observer {
+
+	
+	Observable dolarService;
 	
 	private double cotacaoDolarReal;
 	
 	private String labelCotacaoDolarReal;
 
-	public DolarCotacaoView() {
-		super();
+	public DolarCotacaoView(Observable dolarServiceObservable) {
+		this.dolarService = dolarServiceObservable;
+		dolarServiceObservable.addObserver(this);
 	}
 
-	public DolarCotacaoView(double cotacaoDolarReal) {
-		super();
-		this.cotacaoDolarReal = cotacaoDolarReal;
+
+	@Override
+	public void update(Observable dolarServiceSubject, Object argumento) {
+		if ( dolarServiceSubject instanceof DolarService ) {
+			DolarService dolarService = (DolarService) dolarServiceSubject;
+			setCotacaoDolarReal(dolarService.getCotacaoDolarReal());
+			exibirCotacaoDolarReal();
+		}
 	}
+	
+	
+	
 
 	public double getCotacaoDolarReal() {
 		return cotacaoDolarReal;
